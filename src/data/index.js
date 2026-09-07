@@ -1,51 +1,20 @@
-export const personal = {
-  email: "gustavobritosr@gmail.com",
-  github: "https://github.com/gustavoszn",
-  linkedin: "https://linkedin.com/in/gustavo-brito-r-de-sousa-29b03131b/",
-  location: "Barueri / Alphaville — SP",
-  education: "Sistemas de Informação — Mackenzie",
-  about: "Sou profissional de tecnologia e estudante de Sistemas de Informação no Mackenzie, com formação técnica em Informática pela FIEB. Hoje atuo no suporte de sistemas para o varejo, investigando incidentes em ambientes Linux, bancos de dados e integrações fiscais. Em paralelo, construo projetos web e aprofundo minha formação em desenvolvimento Full Stack e Back-end.",
-};
-
-export const experience = {
-  company: "Visual Mix Tecnologia para o Varejo", role: "Support System Analyst", period: "2023 — atual",
-  description: "Integro uma equipe dedicada exclusivamente à operação do Atacadão, trabalhando na sustentação técnica de sistemas usados em um ambiente crítico de varejo.",
-  activities: ["Diagnóstico de incidentes em ambientes Linux", "Análise de comunicação entre PDV e SEFAZ", "Investigação de NFC-e, cupons e notas fiscais", "Consultas e análises de dados com SQL e DBeaver", "Coleta de logs, execução e acompanhamento de scripts", "Troubleshooting e suporte remoto a sistemas em produção"],
-  techs: ["Linux", "Docker", "SQL", "DBeaver", "Logs LV / LF", "PDV", "NFC-e", "SEFAZ", "Troubleshooting"],
-};
-
-export const technologies = [
-  { category: "Frontend", level: "PROJETOS", items: ["React", "JavaScript", "HTML5", "CSS3", "Vite", "Responsividade"] },
-  { category: "Back-end", level: "EM EVOLUÇÃO", items: ["APIs REST", "Node.js", "Python", "Java", "Engenharia de Software"] },
-  { category: "Dados", level: "PRÁTICA", items: ["SQL", "DBeaver", "Modelagem", "Banco Relacional", "Power BI"] },
-  { category: "Infraestrutura", level: "PRÁTICA", items: ["Linux", "Docker", "Shell", "Logs", "TCP/IP", "Troubleshooting"] },
-  { category: "Desenvolvimento", level: "ROTINA", items: ["Git", "GitHub", "VS Code", "Git Flow", "GitHub Actions"] },
+export const personal={email:"gustavobritosr@gmail.com",github:"https://github.com/gustavoszn",linkedin:"https://linkedin.com/in/gustavo-brito-r-de-sousa-29b03131b/",location:"Barueri / Alphaville — SP",education:"Sistemas de Informação — Mackenzie",about:"Sou profissional de tecnologia e estudante de Sistemas de Informação no Mackenzie, com formação técnica em Informática pela FIEB. Atuo no suporte de sistemas críticos de varejo e desenvolvo projetos Full Stack."};
+export const experience={company:"Visual Mix Tecnologia para o Varejo",role:"Support System Analyst",period:"2023 — atual",description:"Integro uma equipe dedicada à operação do Atacadão, trabalhando na sustentação técnica de sistemas de varejo.",activities:["Diagnóstico de incidentes em Linux","Análise de comunicação entre PDV e SEFAZ","Investigação de NFC-e e notas fiscais","Consultas e análises com SQL e DBeaver","Coleta de logs e acompanhamento de scripts","Troubleshooting e suporte remoto"],techs:["Linux","Docker","SQL","DBeaver","Logs","PDV","NFC-e","SEFAZ"]};
+export const technologies=[
+ {category:"Frontend",level:"PROJETOS",items:["React","JavaScript","HTML5","CSS3","Vite","Responsividade"]},
+ {category:"Back-end",level:"EM EVOLUÇÃO",items:["APIs REST","Node.js","Python","Java","Engenharia de Software"]},
+ {category:"Dados",level:"PRÁTICA",items:["SQL","DBeaver","Modelagem","Banco Relacional","Power BI"]},
+ {category:"Infraestrutura",level:"PRÁTICA",items:["Linux","Docker","Shell","Logs","TCP/IP","Troubleshooting"]},
+ {category:"Desenvolvimento",level:"ROTINA",items:["Git","GitHub","VS Code","Git Flow","GitHub Actions"]},
 ];
-
-const projectDeployments = {
-  2: "https://mackenzie-portal-gustavoszns-projects.vercel.app",
-  3: "https://psi-agenda-three.vercel.app",
-};
-const projectScreenshots = {
-  2: "/projects/mackenzie-portal.png",
-  3: "/projects/vivamente.png",
-};
-const projectRepositories = {
-  1: "https://github.com/gustavoszn/street-house",
-};
-
-export const projects = [
-  { id: 1, name: "Street House", slug: "street-house", mark: "SH", year: "2023", theme: "amber", category: "Plataforma Web / Full Stack", github: null, description: "Plataforma que conecta artistas e organizadores de eventos por meio de perfis, portfólios, comunicação e gestão de agenda.", challenge: "Estruturar uma experiência coerente para dois perfis de usuário com jornadas, objetivos e permissões diferentes.", solution: "Arquitetura orientada por requisitos, casos de uso, prototipação e modelagem de dados antes da implementação.", features: ["Cadastro e autenticação", "Perfis e portfólio artístico", "Pesquisa de artistas", "Comunicação e agenda", "Requisitos, DER e casos de uso"], techs: ["React", "JavaScript", "Vite", "CSS", "APIs"] },
-  { id: 2, name: "Portal Acadêmico", slug: "mackenzie-portal", mark: "M", year: "2026", theme: "red", category: "UX/UI + Front-end", github: "https://github.com/gustavoszn/mackenzie-portal", disclaimer: "Projeto conceitual e não oficial.", description: "Redesign do portal do aluno com foco em hierarquia de informação, acessibilidade e uma experiência realmente responsiva.", challenge: "Adaptar informações densas — especialmente o quadro de horários — para telas pequenas sem perder contexto.", solution: "Visualização semanal no desktop e experiência reorganizada por dia no mobile, usando componentes responsivos.", features: ["Layout adaptativo", "Agenda semanal e diária", "Componentização", "Navegação acessível", "Identidade institucional reinterpretada"], techs: ["React", "JavaScript", "Vite", "CSS"] },
-  { id: 3, name: "VivaMente", slug: "vivamente", mark: "VM", year: "2026", theme: "mint", category: "Sistema de Gestão", github: "https://github.com/gustavoszn/-psi-agenda", description: "Sistema para clínicas de psicologia que organiza pacientes, consultas e rotinas administrativas em uma interface acolhedora.", challenge: "Simplificar processos administrativos sem perder a sensibilidade e a clareza necessárias ao contexto clínico.", solution: "Fluxos objetivos, dados organizados e identidade própria que equilibra confiança, privacidade e acolhimento.", features: ["Gestão de pacientes", "Agenda de consultas", "Interface administrativa", "Organização de informações", "Autenticação e banco de dados"], techs: ["React", "JavaScript", "Supabase", "CSS", "Vercel"] },
-].map((project) => ({
-  ...project,
-  demo: projectDeployments[project.id] ?? null,
-  image: projectScreenshots[project.id] ?? null,
-  github: projectRepositories[project.id] ?? project.github,
-}));
-
-export const education = [
-  { institution: "Universidade Presbiteriana Mackenzie", course: "Sistemas de Informação", period: "2024 — atual", detail: "Campus Alphaville · Cursando" },
-  { institution: "FIEB", course: "Técnico em Informática", period: "2021 — 2023", detail: "Formação técnica concluída" },
+export const projects=[
+ {id:1,name:"Street House",mark:"SH",year:"2026",theme:"amber",category:"Plataforma Web / Full Stack",github:"https://github.com/gustavoszn/street-house",demo:"https://street-house-web.vercel.app/recursos",image:"/projects/street-house.png",description:"Plataforma que conecta artistas e organizadores por meio de descoberta, perfis, contato e agenda.",challenge:"Organizar jornadas diferentes para artistas e organizadores sem fragmentar a experiência.",solution:"Frontend React conectado a uma API Java/Spring Boot, com catálogo, autenticação, avaliações e áreas específicas.",features:["Catálogo e busca de artistas","Perfis e avaliações","Áreas por tipo de usuário","Contato e agenda integrada","Interface responsiva"],techs:["React","Vite","Java","Spring Boot","Flutter"]},
+ {id:2,name:"Portal Acadêmico",mark:"M",year:"2026",theme:"red",category:"UX/UI + Front-end",github:"https://github.com/gustavoszn/mackenzie-portal",demo:"https://mackenzie-portal.vercel.app",image:"/projects/mackenzie-portal.png",disclaimer:"Projeto conceitual e não oficial.",description:"Redesign de portal acadêmico com foco em hierarquia, acessibilidade e responsividade.",challenge:"Adaptar informações densas para telas pequenas sem perder contexto.",solution:"Visualização semanal no desktop e experiência reorganizada por dia no mobile.",features:["Layout adaptativo","Agenda semanal e diária","Componentização","Navegação acessível","Dados fictícios"],techs:["React","JavaScript","Vite","CSS"]},
+ {id:3,name:"Agenda de Psicologia",mark:"AP",year:"2026",theme:"mint",category:"Sistema de Gestão",github:"https://github.com/gustavoszn/-psi-agenda",demo:"https://psi-agenda-three.vercel.app",image:"/projects/agenda-psicologia.png",description:"Aplicação para gerenciamento e agendamento de atendimentos de psicologia, pacientes e rotinas administrativas.",challenge:"Simplificar processos administrativos preservando clareza, privacidade e acolhimento.",solution:"Fluxos objetivos, agenda em diferentes visualizações e áreas para profissional e paciente.",features:["Gestão de pacientes","Agenda diária, semanal e mensal","Portal do paciente","Detecção de conflitos","Layout responsivo"],techs:["React 19","Vite 8","Tailwind CSS","Framer Motion"]},
+ {id:4,name:"Nexora",mark:"NX",year:"2026",theme:"violet",category:"Gestão de Operações / Full Stack",github:"https://github.com/gustavoszn/devflow-project-management",demo:"https://devflow-project-management.vercel.app",image:"/projects/nexora.png",description:"Central corporativa full stack para organizar operações, responsáveis, prioridades e prazos.",challenge:"Reunir informações operacionais densas com leitura rápida e rastreabilidade.",solution:"Aplicação React com API Express, PostgreSQL, JWT e isolamento por usuário.",features:["Central de pendências","Projetos e tarefas","Filtros combináveis","Autenticação JWT","Estados de loading e erro"],techs:["React 19","Node.js","Express","PostgreSQL","JWT"]},
+ {id:5,name:"Routine",mark:"RT",year:"2026",theme:"blue",category:"Organização Pessoal / Full Stack",github:"https://github.com/gustavoszn/fincontrol-fullstack",demo:"https://fincontrol-fullstack.vercel.app",image:"/projects/routine.png",description:"Aplicação mobile-first para organizar atividades, compromissos, categorias e objetivos.",challenge:"Apresentar a rotina diária com clareza, evitando excesso de métricas.",solution:"Timeline diária conectada a API Express com PostgreSQL e autenticação.",features:["Timeline do dia","Calendário e filtros","Categorias pessoais","Objetivos com progresso","Navegação mobile"],techs:["React 19","Node.js","Express","PostgreSQL","JWT"]},
+];
+export const education=[
+ {institution:"Universidade Presbiteriana Mackenzie",course:"Sistemas de Informação",period:"2024 — atual",detail:"Campus Alphaville · Cursando"},
+ {institution:"FIEB",course:"Técnico em Informática",period:"2021 — 2023",detail:"Formação técnica concluída"},
 ];
