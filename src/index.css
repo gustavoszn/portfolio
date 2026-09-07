@@ -133,3 +133,10 @@
   .project__actions{grid-template-columns:1fr auto}
   .project__actions button{grid-column:1/-1;grid-row:2}
 }
+
+@media(max-width:600px){
+  .hero h1{font-size:clamp(48px,14vw,60px);letter-spacing:-.06em}
+  .hero__actions{grid-template-columns:1fr}
+  .hero__actions .button{width:100%;min-width:0;white-space:normal}
+  .hero__lead{max-width:100%;overflow-wrap:anywhere}
+}
