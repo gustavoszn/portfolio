@@ -25,7 +25,7 @@ export default function Journey() {
         </div>
 
         <div className="timeline">
-          {journey.map((item, i) => {
+          {journey.map((item) => {
             const Icon = icons[item.type];
             return (
               <div key={item.id} className="timeline-item">

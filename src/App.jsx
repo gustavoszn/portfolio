@@ -1,30 +1,42 @@
-import Navbar from "./components/ui/Navbar";
-import Footer from "./components/ui/Footer";
-import Hero from "./components/sections/Hero";
-import About from "./components/sections/About";
-import Journey from "./components/sections/Journey";
-import Skills from "./components/sections/Skills";
-import Experience from "./components/sections/Experience";
-import Projects from "./components/sections/Projects";
-import Achievements from "./components/sections/Achievements";
-import Contact from "./components/sections/Contact";
+import { useEffect, useState } from "react";
+import { ArrowDownRight, ArrowUpRight, BriefcaseBusiness, Check, ChevronRight, Code2, Database, GraduationCap, Layers3, MapPin, Menu, Server, Terminal, X, Zap } from "lucide-react";
+import { IconGithub as Github, IconLinkedin as Linkedin } from "./components/ui/Icons";
+import { personal, experience, technologies, projects, education } from "./data";
 import "./index.css";
 
-export default function App() {
-  return (
-    <>
-      <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <Journey />
-        <Skills />
-        <Experience />
-        <Projects />
-        <Achievements />
-        <Contact />
-      </main>
-      <Footer />
-    </>
-  );
+const nav = [["about", "Sobre"], ["experience", "Experiência"], ["stack", "Tecnologias"], ["projects", "Projetos"], ["education", "Formação"], ["contact", "Contato"]];
+const icons = { Frontend: Code2, "Back-end": Server, Dados: Database, Infraestrutura: Terminal, Desenvolvimento: Layers3 };
+
+function useActiveSection() {
+  const [active, setActive] = useState("home");
+  useEffect(() => { const observer = new IntersectionObserver(entries => { const visible = entries.filter(e => e.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]; if (visible) setActive(visible.target.id); }, { rootMargin: "-25% 0px -60%", threshold: [0, .2, .5] }); document.querySelectorAll("section[id]").forEach(s => observer.observe(s)); return () => observer.disconnect(); }, []);
+  return active;
 }
+function useReveal() {
+  useEffect(() => { const items = document.querySelectorAll("[data-reveal]"); const observer = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("is-visible"); observer.unobserve(e.target); } }), { threshold: .12 }); items.forEach(i => observer.observe(i)); return () => observer.disconnect(); }, []);
+}
+function Navbar() {
+  const [open, setOpen] = useState(false), [scrolled, setScrolled] = useState(false); const active = useActiveSection();
+  useEffect(() => { const fn = () => setScrolled(scrollY > 28); fn(); addEventListener("scroll", fn, { passive: true }); return () => removeEventListener("scroll", fn); }, []);
+  const go = id => { document.getElementById(id)?.scrollIntoView({ behavior: "smooth" }); setOpen(false); };
+  return <header className={`topbar ${scrolled ? "topbar--scrolled" : ""}`}><div className="shell topbar__inner"><button className="brand" onClick={() => go("home")} aria-label="Ir para o início"><span>GB</span><i /></button><nav className="desktop-nav" aria-label="Navegação principal">{nav.map(([id, label]) => <button key={id} className={active === id ? "active" : ""} onClick={() => go(id)}>{label}</button>)}</nav><a className="topbar__contact" href={`mailto:${personal.email}`}>Vamos conversar <ArrowUpRight size={15} /></a><button className="menu-button" onClick={() => setOpen(!open)} aria-expanded={open} aria-label="Abrir menu">{open ? <X /> : <Menu />}</button></div><div className={`mobile-nav ${open ? "open" : ""}`}>{nav.map(([id, label], i) => <button key={id} onClick={() => go(id)}><span>0{i + 1}</span>{label}<ChevronRight size={18} /></button>)}</div></header>;
+}
+function Heading({ index, eyebrow, children, text }) { return <div className="section-heading" data-reveal><div className="section-heading__meta"><span>{index}</span><span>{eyebrow}</span></div><h2>{children}</h2>{text && <p>{text}</p>}</div>; }
+function Hero() { return <section id="home" className="hero"><div className="hero__noise"/><div className="hero__glow"/><div className="shell hero__layout"><div className="hero__copy"><div className="availability"><i/> Disponível para oportunidades em desenvolvimento</div><p className="hero__hello">Olá, eu sou</p><h1>Gustavo<br/><span>Brito.</span></h1><p className="hero__role">Full Stack Developer <span>/</span> React <span>/</span> SQL</p><p className="hero__lead">Desenvolvo soluções web unindo código, contexto de negócio e experiência real com sistemas críticos de varejo.</p><div className="hero__actions"><button className="button button--solid" onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}>Explorar projetos <ArrowDownRight size={17}/></button><a className="button button--ghost" href={personal.github} target="_blank" rel="noreferrer"><Github size={17}/> GitHub</a></div><div className="hero__facts"><span><MapPin/> {personal.location}</span><span><GraduationCap/> {personal.education}</span></div></div><div className="system-card" aria-label="Resumo da experiência técnica"><div className="system-card__bar"><span><i/><i/><i/></span><em>production-context.sh</em><b>LIVE</b></div><div className="system-card__body"><p><span>01</span><b>$</b> whoami</p><h3>Support System Analyst</h3><p><span>02</span><b>$</b> current_scope</p><div className="code-output">operação dedicada / atacadão<br/>sistemas de varejo em produção</div><p><span>03</span><b>$</b> stack --daily</p><div className="terminal-tags">{["Linux", "Docker", "SQL", "Logs", "PDV", "NFC-e"].map(x => <span key={x}>{x}</span>)}</div><div className="system-status"><span><i/> systems operational</span><span>Barueri, SP</span></div></div><div className="orbit orbit--one"/><div className="orbit orbit--two"/></div></div><div className="hero__rail"><span>SCROLL TO DISCOVER</span><i/></div></section>; }
+function About() { return <section id="about" className="section about"><div className="shell"><Heading index="01" eyebrow="Sobre">Experiência de produção.<br/><span>Olhar de desenvolvimento.</span></Heading><div className="about__grid"><div className="about__statement" data-reveal><p>{personal.about}</p><blockquote>“Entender o problema antes de construir a solução.”</blockquote></div><div className="about__details" data-reveal><p>Minha experiência conecta duas perspectivas valiosas:</p><div><span>01</span><h3>Operação real</h3><p>Diagnóstico de incidentes, leitura de logs e análise de integrações em sistemas que não podem parar.</p></div><div><span>02</span><h3>Construção de produto</h3><p>Interfaces responsivas, componentização e regras de negócio transformadas em experiências claras.</p></div></div></div></div></section>; }
+function Experience() { return <section id="experience" className="section section--panel"><div className="shell"><Heading index="02" eyebrow="Experiência" text="Contato diário com sistemas usados em operações reais do varejo.">Tecnologia onde<br/><span>cada detalhe importa.</span></Heading><article className="experience-card" data-reveal><div className="experience-card__head"><div><span className="pill">ATUAL</span><h3>{experience.company}</h3><p>{experience.role}</p></div><time>{experience.period}</time></div><div className="experience-card__grid"><div className="experience-card__intro"><BriefcaseBusiness/><p>{experience.description}</p></div><ul>{experience.activities.map(item => <li key={item}><Check size={15}/>{item}</li>)}</ul></div><div className="experience-card__stack">{experience.techs.map(item => <span key={item}>{item}</span>)}</div></article><div className="previous-roles" data-reveal><span>TRAJETÓRIA ANTERIOR</span><p><b>Chilli Beans</b> — vendas, metas e relacionamento</p><i/><p><b>Exsen</b> — atendimento e resolução de solicitações</p></div></div></section>; }
+function Stack() { return <section id="stack" className="section"><div className="shell"><Heading index="03" eyebrow="Tecnologias" text="Sem percentuais artificiais: contexto de uso e evolução contínua.">Ferramentas para pensar,<br/><span>construir e operar.</span></Heading><div className="stack-grid">{technologies.map((group, i) => { const Icon = icons[group.category]; return <article className="stack-card" data-reveal key={group.category} style={{ "--delay": `${i * 70}ms` }}><div className="stack-card__icon"><Icon/></div><span className="stack-card__level">{group.level}</span><h3>{group.category}</h3><div>{group.items.map(item => <span key={item}>{item}</span>)}</div></article>; })}</div></div></section>; }
+function ProjectVisual({ project }) {
+  const content = <>{project.image ? <img src={project.image} alt={`Tela real do projeto ${project.name}`} loading="lazy"/> : <div className="preview-unavailable"><span>{project.mark}</span><p>Preview será adicionado após o deploy</p></div>}<span className="project-case">CASE 0{project.id}</span>{project.demo && <span className="preview-link">Abrir projeto <ArrowUpRight/></span>}</>;
+  return project.demo
+    ? <a className={`project-visual project-visual--${project.theme}`} href={project.demo} target="_blank" rel="noopener noreferrer" aria-label={`Abrir ${project.name} na Vercel`}>{content}</a>
+    : <div className={`project-visual project-visual--${project.theme}`}>{content}</div>;
+}
+function Projects() {
+  const [selected, setSelected] = useState(null); useEffect(() => { document.body.classList.toggle("modal-open", Boolean(selected)); return () => document.body.classList.remove("modal-open"); }, [selected]);
+  return <section id="projects" className="section section--projects"><div className="shell"><Heading index="04" eyebrow="Projetos selecionados">Cases com contexto.<br/><span>Produtos em funcionamento.</span></Heading><div className="projects-list">{projects.map(project => <article className="project" data-reveal key={project.id}><ProjectVisual project={project}/><div className="project__content"><div className="project__meta"><span>{project.category}</span><span>{project.year}</span></div><h3>{project.name}</h3>{project.disclaimer && <p className="project__disclaimer">{project.disclaimer}</p>}<p>{project.description}</p><div className="project__features"><span>PRINCIPAIS FUNCIONALIDADES</span><ul>{project.features.slice(0, 3).map(feature => <li key={feature}><Check/>{feature}</li>)}</ul></div><div className="project__challenge"><span>DESAFIO</span><p>{project.challenge}</p></div><div className="project__techs">{project.techs.map(x => <span key={x}>{x}</span>)}</div><div className="project__actions">{project.demo && <a className="project__demo" href={project.demo} target="_blank" rel="noopener noreferrer">Ver projeto <ArrowUpRight/></a>}<button onClick={() => setSelected(project)}>Detalhes</button>{project.github && <a href={project.github} target="_blank" rel="noopener noreferrer" aria-label={`GitHub do projeto ${project.name}`}><Github/></a>}</div></div></article>)}</div></div>{selected && <div className="modal-backdrop" onMouseDown={() => setSelected(null)}><div className="case-modal" role="dialog" aria-modal="true" aria-labelledby="case-title" onMouseDown={e => e.stopPropagation()}><button className="case-modal__close" onClick={() => setSelected(null)} aria-label="Fechar"><X/></button><span className="case-modal__eyebrow">ESTUDO DE CASO / 0{selected.id}</span><h2 id="case-title">{selected.name}</h2><p className="case-modal__lead">{selected.description}</p><div className="case-modal__grid"><div><span>DESAFIO</span><p>{selected.challenge}</p></div><div><span>SOLUÇÃO</span><p>{selected.solution}</p></div></div><h3>Principais entregas</h3><ul>{selected.features.map(x => <li key={x}><Check/> {x}</li>)}</ul><div className="case-modal__footer">{selected.techs.map(x => <span key={x}>{x}</span>)}</div></div></div>}</section>;
+}
+function Education() { return <section id="education" className="section"><div className="shell"><Heading index="05" eyebrow="Formação">Base técnica.<br/><span>Evolução constante.</span></Heading><div className="education-grid">{education.map((item, i) => <article data-reveal key={item.institution}><span>0{i + 1}</span><div><time>{item.period}</time><h3>{item.course}</h3><p>{item.institution}</p><small>{item.detail}</small></div><GraduationCap/></article>)}</div><div className="path" data-reveal><span>Técnico em Informática</span><ChevronRight/><span>Sistemas de Informação</span><ChevronRight/><span>Sistemas em produção</span><ChevronRight/><b>Desenvolvimento de Software</b></div></div></section>; }
+function Contact() { return <section id="contact" className="contact"><div className="shell contact__inner"><span className="contact__eyebrow">06 / CONTATO</span><h2>Vamos construir<br/><i>algo relevante?</i></h2><p>Estou aberto a oportunidades e conexões na área de desenvolvimento de software e tecnologia.</p><a className="contact__email" href={`mailto:${personal.email}`}>{personal.email}<ArrowUpRight/></a><div className="contact__links"><a href={personal.linkedin} target="_blank" rel="noreferrer"><Linkedin/> LinkedIn</a><a href={personal.github} target="_blank" rel="noreferrer"><Github/> GitHub</a><span><MapPin/> {personal.location}</span></div></div></section>; }
+function Footer() { return <footer><div className="shell"><button onClick={() => document.getElementById("home")?.scrollIntoView({ behavior: "smooth" })}>GB<span>.</span></button><p>© {new Date().getFullYear()} Gustavo Brito</p><p>React + Vite <Zap size={13}/></p></div></footer>; }
+export default function App() { useReveal(); return <><Navbar/><main><Hero/><About/><Experience/><Stack/><Projects/><Education/><Contact/></main><Footer/></>; }

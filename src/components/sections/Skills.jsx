@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { skills, technologies, hardSkills, softSkills, differentials, studying } from "../../data";
+import { skills, hardSkills, softSkills, differentials, studying } from "../../data";
 import "./Skills.css";
 
 const CATEGORIES = ["Todos", "Frontend", "Backend", "Database", "Tools"];
